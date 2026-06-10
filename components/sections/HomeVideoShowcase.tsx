@@ -21,7 +21,7 @@ export function HomeVideoShowcase() {
 
         <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_28px_90px_rgba(26,26,26,0.12)]">
           <video
-            aria-label="Anillo de JoyasPeru en movimiento"
+            aria-label="Anillo de JoyaPerú en movimiento"
             autoPlay
             className="aspect-video w-full object-cover"
             loop

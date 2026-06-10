@@ -24,13 +24,59 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 8rem;
+  scrollbar-color: rgba(201, 168, 76, 0.82) transparent;
+  scrollbar-width: thin;
+}
+
+html.scrollbar-at-top {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
 }
 
 body {
   margin: 0;
-  background: var(--porcelain);
+  background-color: var(--porcelain);
+  background-image:
+    repeating-linear-gradient(115deg, rgba(201, 168, 76, 0.075) 0 1px, transparent 1px 132px),
+    repeating-linear-gradient(25deg, transparent 0 96px, rgba(201, 168, 76, 0.045) 96px 97px, transparent 97px 184px),
+    linear-gradient(180deg, #faf8f5 0%, #f3eee5 100%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: "DM Sans", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0.82rem;
+}
+
+html.scrollbar-at-top::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  background: transparent;
+  height: 0;
+  width: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(180deg, rgba(255, 245, 209, 0.72), rgba(201, 168, 76, 0.82) 46%, rgba(121, 93, 31, 0.78)),
+    var(--gold);
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(90, 66, 17, 0.12);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(255, 244, 203, 0.88), rgba(201, 168, 76, 0.92) 42%, rgba(111, 84, 27, 0.86));
+  background-clip: content-box;
 }
 
 ::selection {
@@ -69,6 +115,11 @@ textarea {
   line-height: 0.92;
 }
 
+.section-title.contact-title {
+  font-size: clamp(2.35rem, 4vw, 3.7rem);
+  line-height: 1;
+}
+
 .nav-link {
   align-items: center;
   appearance: none;
@@ -100,6 +151,75 @@ textarea {
   opacity: 1;
   outline: 1px solid var(--gold);
   outline-offset: 0.45rem;
+}
+
+.site-header {
+  transition: padding 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  outline: 0;
+  transition:
+    align-items 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    min-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    padding 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand-logo img {
+  transition:
+    filter 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header[data-scrolled="true"] {
+  padding: 0;
+}
+
+.site-header[data-scrolled="true"] .site-nav {
+  align-items: center;
+  background: rgba(26, 22, 17, 0.16);
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 18px 58px rgba(26, 22, 17, 0.08);
+  max-width: none;
+  min-height: 6.25rem;
+  padding: 0.8rem clamp(1rem, 3vw, 2.5rem);
+  width: 100%;
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+}
+
+.site-header[data-scrolled="true"] .brand-logo img {
+  filter: drop-shadow(0 12px 26px rgba(90, 66, 17, 0.22));
+  width: 10.75rem;
+}
+
+.site-header[data-scrolled="true"] .nav-desktop-center {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: white;
+  padding-inline: 0;
+}
+
+.site-header[data-scrolled="true"] .nav-link {
+  opacity: 0.9;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+}
+
+.site-header[data-scrolled="true"] .nav-mobile-category {
+  background: rgba(26, 22, 17, 0.18);
+  border: 0;
+  color: white;
 }
 
 .nav-desktop-center {

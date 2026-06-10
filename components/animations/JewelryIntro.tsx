@@ -74,7 +74,7 @@ export function JewelryIntro() {
         >
           <div className="absolute inset-x-[14%] bottom-[12%] h-8 rounded-full bg-black/40 blur-2xl" />
           <Image
-            alt="Logo JoyasPeru"
+            alt="Logo JoyaPerú"
             className="relative h-auto w-full object-contain drop-shadow-[0_36px_80px_rgba(0,0,0,0.58)]"
             height={1782}
             priority

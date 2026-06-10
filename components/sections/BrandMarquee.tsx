@@ -1,5 +1,5 @@
 const brands = [
-  "JoyasPeru",
+  "JoyaPerú",
   "Plata 950",
   "Oro 18k",
   "Tous",

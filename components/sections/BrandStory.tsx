@@ -1,23 +1,26 @@
-import Image from "next/image";
-
 export function BrandStory() {
   return (
     <section className="reveal border-y border-black/10 bg-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-[0.9fr_1.1fr] md:px-8">
-        <div className="relative min-h-[480px] overflow-hidden">
-          <Image
-            alt="Pulseras tejidas JoyasPeru"
-            className="object-cover"
-            fill
-            sizes="(max-width: 768px) 92vw, 42vw"
-            src="/images/pulseras/set-pulseras-tejidas-corazon-plata-950-11992.webp"
-          />
+        <div className="relative min-h-[480px] overflow-hidden bg-[var(--ink)]">
+          <video
+            aria-label="Artesano peruano trabajando una pieza de joyeria"
+            autoPlay
+            className="h-full min-h-[480px] w-full object-cover"
+            loop
+            muted
+            playsInline
+            poster="/videos/artisan-process-poster.webp"
+            preload="metadata"
+          >
+            <source src="/videos/video_de_un_artesano_peruano_r.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="flex flex-col justify-center">
           <p className="section-kicker">Nosotros</p>
           <h2 className="section-title">Una joya debe sentirse personal antes de verse costosa.</h2>
           <p className="mt-6 max-w-2xl text-lg leading-9 text-[var(--muted)]">
-            JoyasPeru combina plata peruana, oro 18k y piezas hechas por encargo con una lectura
+            JoyaPerú combina plata peruana, oro 18k y piezas hechas por encargo con una lectura
             contemporanea: menos ruido, mejores materiales y una experiencia clara desde el primer contacto.
           </p>
           <dl className="mt-10 grid gap-5 sm:grid-cols-3">

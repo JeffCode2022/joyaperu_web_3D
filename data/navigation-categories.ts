@@ -22,7 +22,7 @@ export const navigationCategories: NavigationCategory[] = [
   { label: "Joyas de acero", slug: "joyas-de-acero", count: 6, tone: "jewelry" },
   { label: "Ofertas", slug: "ofertas", count: 3, tone: "lifestyle" },
   { label: "Bienestar", slug: "bienestar", count: 18, tone: "lifestyle" },
-  { label: "Sorteos Joyaperu", slug: "sorteos-joyaperu", count: 0, tone: "service" },
+  { label: "Sorteos JoyaPerú", slug: "sorteos-joyaperu", count: 0, tone: "service" },
   { label: "Packs de registros", slug: "packs-de-registros", count: 4, tone: "service" },
   { label: "Otros", slug: "otros", count: 8, tone: "service" },
   {

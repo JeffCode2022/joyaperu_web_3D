@@ -11,12 +11,12 @@ import { JewelryIntro } from "@/components/animations/JewelryIntro";
 import { PageShell } from "@/components/animations/PageShell";
 
 export const metadata: Metadata = {
-  title: "JoyasPeru | Joyeria peruana en plata 950 y oro 18k",
+  title: "JoyaPerú | Joyeria peruana en plata 950 y oro 18k",
   description:
-    "Rediseño editorial de JoyasPeru: joyeria peruana, piezas personalizadas, plata 950, oro 18k y regalos memorables.",
+    "Rediseño editorial de JoyaPerú: joyeria peruana, piezas personalizadas, plata 950, oro 18k y regalos memorables.",
   metadataBase: new URL("https://joyaperu.com"),
   openGraph: {
-    title: "JoyasPeru",
+    title: "JoyaPerú",
     description: "Joyeria peruana con plata 950, oro 18k y piezas personalizadas.",
     images: ["/images/collares/collar-lomo-cartier-plata-950-645.webp"],
   },
@@ -79,13 +79,41 @@ const stripExtensionHydrationAttributes = `
 })();
 `;
 
+const scrollbarVisibilityScript = `
+(() => {
+  const root = document.documentElement;
+  const threshold = 12;
+  let frame = 0;
+
+  const sync = () => {
+    frame = 0;
+    root.classList.toggle("scrollbar-at-top", window.scrollY <= threshold);
+  };
+
+  const scheduleSync = () => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(sync);
+  };
+
+  sync();
+  window.addEventListener("scroll", scheduleSync, { passive: true });
+  window.addEventListener("resize", scheduleSync);
+  window.addEventListener("pageshow", sync);
+})();
+`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html className="scrollbar-at-top" lang="es" suppressHydrationWarning>
       <head suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{ __html: stripExtensionHydrationAttributes }}
           id="strip-extension-hydration-attributes"
+          suppressHydrationWarning
+        />
+        <script
+          dangerouslySetInnerHTML={{ __html: scrollbarVisibilityScript }}
+          id="scrollbar-visibility"
           suppressHydrationWarning
         />
       </head>

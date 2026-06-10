@@ -42,7 +42,7 @@ const categoryPriority = [
   { slug: "joyas-de-acero", match: ["Joyas de Acero"] },
   { slug: "ofertas", match: ["Ofertas"] },
   { slug: "bienestar", match: ["BIENESTAR"] },
-  { slug: "sorteos-joyaperu", match: ["SORTEOS JOYAPERÚ"] },
+  { slug: "sorteos-joyaperu", match: ["SORTEOS JoyaPerú"] },
   { slug: "packs-de-registros", match: ["PACKS DE REGISTROS"] },
   { slug: "verificacion-joyas-y-lingotes", match: ["Verificacion de joyas y lingotes"] },
   { slug: "otros", match: ["otros", "REGALOS"] },
@@ -104,7 +104,7 @@ function resolveCategory(product: SourceProduct) {
 }
 
 const clipDescription = (value: string) => {
-  if (!value) return "Producto del catalogo JoyasPeru disponible para consulta.";
+  if (!value) return "Producto del catalogo JoyaPerú disponible para consulta.";
   return value.length > 138 ? `${value.slice(0, 138).trim()}...` : value;
 };
 

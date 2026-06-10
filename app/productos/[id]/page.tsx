@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: ProductDetailPageProps) {
 
   if (!product) {
     return {
-      title: "Producto no encontrado | JoyasPeru",
+      title: "Producto no encontrado | JoyaPerú",
     };
   }
 
   return {
-    title: `${product.name} | JoyasPeru`,
+    title: `${product.name} | JoyaPerú`,
     description: product.description,
     openGraph: {
       images: [product.image],
@@ -42,7 +42,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const relatedProducts = getRelatedProducts(product, 4);
   const galleryImages = [product.image];
-  const whatsappText = `Hola JoyasPeru, quiero consultar por ${product.name}.`;
+  const whatsappText = `Hola JoyaPerú, quiero consultar por ${product.name}.`;
 
   return (
     <div className="pt-28">

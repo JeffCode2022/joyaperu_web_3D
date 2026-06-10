@@ -6,6 +6,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InvestmentSplitCards } from "@/components/sections/InvestmentSplitCards";
+import { JewelryTrustStrip } from "@/components/sections/JewelryTrustStrip";
 import { Testimonials } from "@/components/sections/Testimonials";
 
 export default function Home() {
@@ -13,12 +14,13 @@ export default function Home() {
     <>
       <ScrollEffectsLoader />
       <HeroSection />
+      <JewelryTrustStrip />
       <InvestmentSplitCards />
       <FeaturedProducts />
-      <BrandStory />
       <CategoryGrid />
       <CatalogSection />
       <Testimonials />
+      <BrandStory />
       <ContactSection />
     </>
   );

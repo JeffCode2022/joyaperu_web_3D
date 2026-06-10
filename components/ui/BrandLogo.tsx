@@ -8,16 +8,16 @@ type BrandLogoProps = {
 export function BrandLogo({ className = "" }: BrandLogoProps) {
   return (
     <Link
-      aria-label="JoyasPeru inicio"
-      className={`group block ${className}`}
+      aria-label="JoyaPerú inicio"
+      className={`brand-logo group block ${className}`}
       href="/"
     >
       <Image
-        alt="JoyasPeru"
-        className="h-auto w-24 object-contain drop-shadow-[0_14px_32px_rgba(0,0,0,0.35)] transition duration-300 group-hover:scale-[1.03] md:w-32"
+        alt="JoyaPerú"
+        className="h-auto w-36 object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.30)] transition duration-300 group-hover:scale-[1.03] md:w-52"
         height={1782}
         priority
-        src="/logo/logo2sinbg.png"
+        src="/logo/logo4sinbg.png"
         width={2400}
       />
     </Link>

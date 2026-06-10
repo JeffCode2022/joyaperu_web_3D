@@ -1,7 +1,7 @@
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 const phone = "51921638910";
-const message = "Hola JoyasPeru, quiero consultar por una joya.";
+const message = "Hola JoyaPerú, quiero consultar por una joya.";
 
 export function WhatsAppButton() {
   return (

@@ -17,8 +17,17 @@ const navText = "nav-link";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeGroup, setActiveGroup] = useState<NavigationCategory["tone"]>("jewelry");
   const accordionId = useId();
+
+  useEffect(() => {
+    const syncScrollState = () => setIsScrolled(window.scrollY > 24);
+
+    syncScrollState();
+    window.addEventListener("scroll", syncScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", syncScrollState);
+  }, []);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -32,8 +41,8 @@ export function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-7 md:pt-5">
-      <nav className="mx-auto flex max-w-[92rem] items-start gap-5 bg-transparent">
+    <header className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-7 md:pt-5" data-scrolled={isScrolled}>
+      <nav className="site-nav mx-auto flex max-w-[92rem] items-start gap-5">
         <BrandLogo className="pointer-events-auto shrink-0" />
 
         <div className="nav-desktop-center pointer-events-auto ml-auto items-center gap-6 rounded-full border border-white/18 bg-transparent px-5 py-2.5 text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur-[2px] xl:gap-7">

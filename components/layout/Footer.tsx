@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-black/10 bg-[var(--ink)] text-[var(--porcelain)]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-8">
         <div>
-          <p className="font-display text-4xl">JoyasPeru</p>
+          <p className="font-display text-4xl">JoyaPerú</p>
           <p className="mt-4 max-w-sm text-sm leading-7 text-white/68">
             Joyeria peruana en plata 950, oro 18k y piezas personalizadas para regalos con memoria.
           </p>

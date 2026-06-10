@@ -35,13 +35,13 @@ const products: InvestmentProduct[] = [
     image: "/images/oro-y-plata/barra-de-100-gramos-plata-999-9-3498.webp",
     href: "/productos?categoria=oro-y-plata#catalogo",
     action: "Comprar plata",
-    accent: "#d9dce1",
-    panelTone: "from-white via-[#dfe2e6] to-[#a7adb5]",
-    baseRotate: "-5deg",
+    accent: "#8d939b",
+    panelTone: "from-white via-[#eceff1] to-[#c4c9ce]",
+    baseRotate: "0deg",
   },
   {
     title: "Barras de oro puro 999.9",
-    headline: "Invierte en oro puro con respaldo de JoyasPeru.",
+    headline: "Invierte en oro puro con respaldo de JoyaPerú.",
     subtitle: "Precio referencial del dia",
     price: "S/ 6,328.14",
     unit: "10g",
@@ -49,9 +49,9 @@ const products: InvestmentProduct[] = [
     image: "/images/oro-y-plata/oro-puro-10-gr-6871.webp",
     href: "/productos?categoria=oro-y-plata#catalogo",
     action: "Comprar oro",
-    accent: "#f3bd45",
+    accent: "#c9a84c",
     panelTone: "from-[#fff4c2] via-[#e9b33e] to-[#8c5a13]",
-    baseRotate: "5deg",
+    baseRotate: "0deg",
   },
 ];
 
@@ -59,8 +59,8 @@ const sliceCount = 6;
 
 function SplitImage({ product }: { product: InvestmentProduct }) {
   return (
-    <div className="split-image relative h-64 overflow-hidden rounded-[1.35rem] border border-white/12 bg-white/8 shadow-[inset_0_0_70px_rgba(255,255,255,0.08)] md:h-80">
-      <div className={`absolute inset-0 bg-gradient-to-br ${product.panelTone} opacity-18`} />
+    <div className="split-image relative h-64 overflow-hidden border border-[rgba(201,168,76,0.24)] bg-white/74 shadow-[inset_0_0_70px_rgba(201,168,76,0.08)] md:h-80">
+      <div className={`absolute inset-0 bg-gradient-to-br ${product.panelTone} opacity-25`} />
       <div className="relative flex h-full [transform-style:preserve-3d]">
         {Array.from({ length: sliceCount }).map((_, index) => {
           const position = (index / (sliceCount - 1)) * 100;
@@ -118,22 +118,23 @@ function InvestmentCard({ product, index }: { product: InvestmentProduct; index:
 
   return (
     <Link
-      className="investment-card group relative block min-h-[36rem] rounded-[2rem] border border-white/12 bg-[#111]/95 p-5 text-white shadow-[0_34px_110px_rgba(0,0,0,0.38)] outline-none transition duration-300 [transform:perspective(1200px)_rotateX(var(--rx))_rotateY(var(--ry))_rotateZ(var(--base-rz))] [transform-style:preserve-3d] hover:border-white/24 md:p-6"
+      className="investment-card group relative block min-h-[36rem] border border-[rgba(201,168,76,0.24)] bg-[rgba(255,255,255,0.72)] p-5 text-[var(--ink)] shadow-[0_28px_80px_rgba(90,70,24,0.10)] outline-none backdrop-blur-sm transition duration-300 [transform:perspective(1200px)_rotateX(var(--rx))_rotateY(var(--ry))_rotateZ(var(--base-rz))] [transform-style:preserve-3d] hover:border-[rgba(201,168,76,0.46)] hover:bg-white/84 md:p-6"
       data-card-index={index}
       href={product.href}
       onPointerLeave={handlePointerLeave}
       onPointerMove={handlePointerMove}
       style={style}
     >
-      <div className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_var(--mx)_var(--my),color-mix(in_srgb,var(--accent)_42%,transparent),transparent_34%)] opacity-40 transition duration-300" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),color-mix(in_srgb,var(--accent)_28%,transparent),transparent_34%)] opacity-36 transition duration-300" />
+      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(115deg,transparent_0_68px,rgba(201,168,76,0.10)_68px_69px,transparent_69px_136px)]" />
       <div className="relative grid h-full gap-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-white/48">
-              Inversion JoyasPeru
+            <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[var(--gold)]">
+              Inversion JoyaPerú
             </p>
             <h2 className="mt-3 font-display text-4xl leading-none md:text-5xl">{product.title}</h2>
-            <p className="mt-5 max-w-md text-2xl font-semibold leading-tight text-white/86">{product.headline}</p>
+            <p className="mt-5 max-w-md text-2xl font-semibold leading-tight text-[#3b3934]">{product.headline}</p>
           </div>
           <ArrowUpRight className="text-[var(--accent)]" size={24} />
         </div>
@@ -142,21 +143,21 @@ function InvestmentCard({ product, index }: { product: InvestmentProduct; index:
 
         <div className="grid gap-5">
           <div>
-            <p className="text-sm font-semibold text-white/58">{product.subtitle}</p>
+            <p className="text-sm font-semibold text-[var(--muted)]">{product.subtitle}</p>
             <div className="mt-2 flex items-end gap-3">
               <strong className="font-display text-5xl leading-none text-[var(--accent)] md:text-6xl">
                 {product.price}
               </strong>
-              <span className="pb-2 text-sm font-bold uppercase tracking-[0.12em] text-white/56">{product.unit}</span>
+              <span className="pb-2 text-sm font-bold uppercase tracking-[0.12em] text-[var(--muted)]">{product.unit}</span>
             </div>
-            <p className="mt-4 max-w-lg text-sm leading-6 text-white/52">{product.note}</p>
+            <p className="mt-4 max-w-lg text-sm leading-6 text-[var(--muted)]">{product.note}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-white/62">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#5b554a]">
               <ShieldCheck size={16} />
               Pureza 999.9
             </span>
-            <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 text-xs font-bold uppercase tracking-[0.14em] text-[#151515] shadow-[0_16px_40px_rgba(0,0,0,0.24)]">
+            <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_16px_40px_rgba(90,70,24,0.18)]">
               <ShoppingCart size={15} />
               {product.action}
             </span>
@@ -208,16 +209,16 @@ export function InvestmentSplitCards() {
   }, []);
 
   return (
-    <section className="investment-split-section reveal overflow-hidden bg-[#050505] px-5 py-24 text-white md:px-8">
+    <section className="investment-split-section reveal overflow-hidden border-y border-[rgba(201,168,76,0.18)] bg-[rgba(250,248,245,0.72)] px-5 py-24 text-[var(--ink)] backdrop-blur-[1px] md:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-5 md:grid-cols-[0.95fr_0.75fr] md:items-end">
           <div>
             <p className="section-kicker">Productos principales</p>
             <h2 className="mt-4 max-w-3xl font-display text-5xl leading-none md:text-7xl">
-              Invierte en oro y plata fisica con JoyasPeru.
+              Invierte en oro y plata fisica con JoyaPerú.
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-7 text-white/58 md:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-[var(--muted)] md:justify-self-end">
             Compra barras y lingotes 999.9 con precio referencial del dia, atencion directa por WhatsApp
             y verificacion para respaldar tu inversion.
           </p>
