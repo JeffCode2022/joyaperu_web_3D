@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import type { CSSProperties, PointerEvent } from "react";
-import { ArrowUpRight, ShieldCheck, ShoppingCart } from "lucide-react";
+import { ShieldCheck, ShoppingCart } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -49,50 +49,44 @@ const products: InvestmentProduct[] = [
     image: "/images/oro-y-plata/oro-puro-10-gr-6871.webp",
     href: "/productos?categoria=oro-y-plata#catalogo",
     action: "Comprar oro",
-    accent: "#c9a84c",
+    accent: "#b58a24",
     panelTone: "from-[#fff4c2] via-[#e9b33e] to-[#8c5a13]",
     baseRotate: "0deg",
   },
 ];
 
-const sliceCount = 6;
-
-function SplitImage({ product }: { product: InvestmentProduct }) {
+function ProductImage({ product }: { product: InvestmentProduct }) {
   return (
-    <div className="split-image relative h-64 overflow-hidden border border-[rgba(201,168,76,0.24)] bg-white/74 shadow-[inset_0_0_70px_rgba(201,168,76,0.08)] md:h-80">
-      <div className={`absolute inset-0 bg-gradient-to-br ${product.panelTone} opacity-25`} />
-      <div className="relative flex h-full [transform-style:preserve-3d]">
-        {Array.from({ length: sliceCount }).map((_, index) => {
-          const position = (index / (sliceCount - 1)) * 100;
-          const style: CardStyle = {
-            backgroundImage: `url(${product.image})`,
-            backgroundPosition: `${position}% center`,
-            backgroundSize: `${sliceCount * 100}% 100%`,
-            "--slice-index": `${index}`,
-          };
-
-          return (
-            <div
-              aria-hidden="true"
-              className="split-slice relative h-full flex-1 bg-white bg-no-repeat will-change-transform"
-              key={index}
-              style={style}
-            />
-          );
-        })}
+    <div className="relative h-56 w-full flex items-center justify-center mt-2 overflow-hidden">
+      {/* Concentric Circles Decor (large, thin, and very soft) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <svg 
+          className="w-full h-full max-w-[95%] max-h-[95%] text-stone-900/[0.03]" 
+          viewBox="0 0 100 100"
+        >
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="0.2" />
+          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.2" />
+          <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" strokeWidth="0.2" />
+        </svg>
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_var(--mx,50%)_var(--my,50%),rgba(255,255,255,.34),transparent_24%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+      {/* Image with multiply blend mode to hide white background */}
+      <img
+        src={product.image}
+        alt={product.title}
+        className="relative max-h-[85%] max-w-[95%] object-contain transition duration-700 group-hover:scale-105 will-change-transform"
+        style={{ mixBlendMode: "multiply" }}
+      />
     </div>
   );
 }
 
 function InvestmentCard({ product, index }: { product: InvestmentProduct; index: number }) {
-  const handlePointerMove = (event: PointerEvent<HTMLAnchorElement>) => {
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
-    const rotateY = (x - 0.5) * 13;
-    const rotateX = (0.5 - y) * 10;
+    const rotateY = (x - 0.5) * 8;
+    const rotateX = (0.5 - y) * 6;
 
     event.currentTarget.style.setProperty("--rx", `${rotateX.toFixed(2)}deg`);
     event.currentTarget.style.setProperty("--ry", `${rotateY.toFixed(2)}deg`);
@@ -100,7 +94,7 @@ function InvestmentCard({ product, index }: { product: InvestmentProduct; index:
     event.currentTarget.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
   };
 
-  const handlePointerLeave = (event: PointerEvent<HTMLAnchorElement>) => {
+  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
     event.currentTarget.style.setProperty("--rx", "0deg");
     event.currentTarget.style.setProperty("--ry", "0deg");
     event.currentTarget.style.setProperty("--mx", "50%");
@@ -116,55 +110,118 @@ function InvestmentCard({ product, index }: { product: InvestmentProduct; index:
     "--my": "50%",
   };
 
+  const isSilver = index === 0;
+
   return (
-    <Link
-      className="investment-card group relative block min-h-[36rem] border border-[rgba(201,168,76,0.24)] bg-[rgba(255,255,255,0.72)] p-5 text-[var(--ink)] shadow-[0_28px_80px_rgba(90,70,24,0.10)] outline-none backdrop-blur-sm transition duration-300 [transform:perspective(1200px)_rotateX(var(--rx))_rotateY(var(--ry))_rotateZ(var(--base-rz))] [transform-style:preserve-3d] hover:border-[rgba(201,168,76,0.46)] hover:bg-white/84 md:p-6"
+    <div
+      className="investment-card group relative flex flex-col overflow-hidden rounded-[2rem] border border-stone-200/50 bg-white text-[var(--ink)] shadow-[0_15px_45px_rgba(90,70,24,0.04)] transition duration-300 [transform:perspective(1200px)_rotateX(var(--rx))_rotateY(var(--ry))_rotateZ(var(--base-rz))] [transform-style:preserve-3d]"
       data-card-index={index}
-      href={product.href}
       onPointerLeave={handlePointerLeave}
       onPointerMove={handlePointerMove}
       style={style}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),color-mix(in_srgb,var(--accent)_28%,transparent),transparent_34%)] opacity-36 transition duration-300" />
-      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(115deg,transparent_0_68px,rgba(201,168,76,0.10)_68px_69px,transparent_69px_136px)]" />
-      <div className="relative grid h-full gap-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[var(--gold)]">
-              Inversion JoyaPerú
-            </p>
-            <h2 className="mt-3 font-display text-4xl leading-none md:text-5xl">{product.title}</h2>
-            <p className="mt-5 max-w-md text-2xl font-semibold leading-tight text-[#3b3934]">{product.headline}</p>
-          </div>
-          <ArrowUpRight className="text-[var(--accent)]" size={24} />
+      {/* Top Banner Zone */}
+      <div
+        className={`relative p-6 pb-6 flex flex-col rounded-t-[2rem] overflow-hidden ${
+          isSilver
+            ? "bg-gradient-to-b from-[#f7f8f9] to-[#eef0f2]"
+            : "bg-gradient-to-b from-[#fdfbf7] to-[#f7f3e8]"
+        }`}
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(115deg,transparent_0_68px,rgba(201,168,76,0.02)_68px_69px,transparent_69px_136px)]" />
+
+        {/* Kicker, Title and Subtitle */}
+        <div className="flex flex-col pr-28">
+          <p
+            className={`text-[0.65rem] font-bold uppercase tracking-[0.2em] ${
+              isSilver ? "text-[#8d939b]" : "text-[var(--gold)]"
+            }`}
+          >
+            Inversión JoyaPerú
+          </p>
+          <h2 className="mt-2 font-display text-2xl md:text-3xl leading-tight text-stone-900 hover:text-[var(--accent)] transition duration-200">
+            <Link href={product.href}>{product.title}</Link>
+          </h2>
+          <p className="mt-1 text-xs text-stone-500 leading-snug max-w-xs">{product.headline}</p>
         </div>
 
-        <SplitImage product={product} />
+        {/* Absolute Badge */}
+        <div
+          className={`absolute top-6 right-6 font-display text-sm font-semibold px-3.5 py-1.5 rounded-lg text-white shadow-sm ${
+            isSilver ? "bg-[#8d939b]" : "bg-[var(--gold)]"
+          }`}
+        >
+          {product.price}
+        </div>
 
-        <div className="grid gap-5">
-          <div>
-            <p className="text-sm font-semibold text-[var(--muted)]">{product.subtitle}</p>
-            <div className="mt-2 flex items-end gap-3">
-              <strong className="font-display text-5xl leading-none text-[var(--accent)] md:text-6xl">
-                {product.price}
-              </strong>
-              <span className="pb-2 text-sm font-bold uppercase tracking-[0.12em] text-[var(--muted)]">{product.unit}</span>
-            </div>
-            <p className="mt-4 max-w-lg text-sm leading-6 text-[var(--muted)]">{product.note}</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#5b554a]">
-              <ShieldCheck size={16} />
-              Pureza 999.9
+        {/* Image with circles */}
+        <Link href={product.href} className="block w-full">
+          <ProductImage product={product} />
+        </Link>
+      </div>
+
+      {/* Bottom Detail Zone */}
+      <div className="p-6 bg-white flex flex-col gap-3 flex-grow rounded-b-[2rem] justify-between">
+        <div className="flex flex-col gap-3">
+          {/* Price display with unit divider */}
+          <div className="flex items-center gap-2">
+            <span
+              className={`font-display text-3xl font-semibold ${
+                isSilver ? "text-stone-900" : "text-[var(--gold)]"
+              }`}
+            >
+              {product.price}
             </span>
-            <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_16px_40px_rgba(90,70,24,0.18)]">
-              <ShoppingCart size={15} />
-              {product.action}
+            <span className="text-stone-300 font-light text-xl">|</span>
+            <span
+              className={`text-[0.68rem] font-bold uppercase tracking-[0.15em] ${
+                isSilver ? "text-[#8d939b]" : "text-[var(--gold)]"
+              }`}
+            >
+              {product.unit}
             </span>
           </div>
+
+          {/* Note */}
+          <p className="text-xs text-stone-500 leading-relaxed">{product.note}</p>
+        </div>
+
+        {/* Action Row */}
+        <div className="flex items-center justify-between border-t border-stone-100 pt-4 mt-2">
+          {/* Pureza check */}
+          <span
+            className={`inline-flex items-center gap-1 text-[0.68rem] font-bold uppercase tracking-wider ${
+              isSilver ? "text-[#8d939b]" : "text-[var(--gold)]"
+            }`}
+          >
+            <ShieldCheck size={14} className="stroke-[2.5]" />
+            Pureza 999.9
+          </span>
+
+          {/* Stars - Themed color to match mockup (gray for silver card, gold for gold card) */}
+          <div 
+            className={`flex items-center gap-0.5 text-sm ${
+              isSilver ? "text-stone-300" : "text-amber-500"
+            }`}
+          >
+            {"★".repeat(5)}
+          </div>
+
+          {/* Link action button */}
+          <Link
+            href={product.href}
+            className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-xl px-4 text-xs font-bold uppercase tracking-[0.1em] text-white shadow-sm transition duration-300 hover:scale-[1.02] ${
+              isSilver
+                ? "bg-[#8d939b] hover:bg-[#787f87]"
+                : "bg-[var(--gold)] hover:bg-[#9c751a]"
+            }`}
+          >
+            <ShoppingCart size={13} />
+            {product.action}
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -186,39 +243,22 @@ export function InvestmentSplitCards() {
           scrollTrigger: { trigger: ".investment-split-section", start: "top 76%" },
         },
       );
-
-      gsap.fromTo(
-        ".split-slice",
-        { z: (index) => (index % 2 === 0 ? -70 : 70), rotateY: (index) => (index % 2 === 0 ? -16 : 16) },
-        {
-          z: 0,
-          rotateY: 0,
-          ease: "none",
-          stagger: 0.02,
-          scrollTrigger: {
-            trigger: ".investment-split-section",
-            start: "top bottom",
-            end: "bottom 45%",
-            scrub: 0.7,
-          },
-        },
-      );
     });
 
     return () => context.revert();
   }, []);
 
   return (
-    <section className="investment-split-section reveal overflow-hidden border-y border-[rgba(201,168,76,0.18)] bg-[rgba(250,248,245,0.72)] px-5 py-24 text-[var(--ink)] backdrop-blur-[1px] md:px-8">
+    <section className="investment-split-section reveal overflow-hidden border-y border-[rgba(201,168,76,0.18)] bg-[rgba(250,248,245,0.72)] px-5 py-12 md:py-16 text-[var(--ink)] backdrop-blur-[1px] md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid gap-5 md:grid-cols-[0.95fr_0.75fr] md:items-end">
+        <div className="mb-8 grid gap-5 md:grid-cols-[0.95fr_0.75fr] md:items-end">
           <div>
             <p className="section-kicker">Productos principales</p>
-            <h2 className="mt-4 max-w-3xl font-display text-5xl leading-none md:text-7xl">
+            <h2 className="mt-3 max-w-3xl font-display text-4xl leading-none md:text-6xl">
               Invierte en oro y plata fisica con JoyaPerú.
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-7 text-[var(--muted)] md:justify-self-end">
+          <p className="max-w-md text-sm leading-relaxed text-[var(--muted)] md:justify-self-end">
             Compra barras y lingotes 999.9 con precio referencial del dia, atencion directa por WhatsApp
             y verificacion para respaldar tu inversion.
           </p>

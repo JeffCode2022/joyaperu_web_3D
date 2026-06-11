@@ -60,7 +60,7 @@ function getPageItems(currentPage: number, pageCount: number) {
 export function CatalogSection({ initialCategory = "todo", initialPage = 1, variant = "curated" }: CatalogSectionProps) {
   const router = useRouter();
   const filterPanelId = useId();
-  const normalizedInitial = initialCategory || "todo";
+  const normalizedInitial = (initialCategory || "todo").toLowerCase();
   const [active, setActive] = useState(normalizedInitial);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [page, setPage] = useState(initialPage);
@@ -111,18 +111,9 @@ export function CatalogSection({ initialCategory = "todo", initialPage = 1, vari
   if (variant === "full") {
     return (
       <section className="reveal mx-auto max-w-7xl scroll-mt-28 px-5 py-16 md:px-8" id="catalogo">
-        <div className="mb-8 grid gap-5 md:grid-cols-[280px_1fr] md:items-end">
-          <div>
-            <p className="section-kicker">Catalogo</p>
-            <h2 className="font-display text-5xl leading-none text-[var(--ink)] md:text-6xl">{title}</h2>
-          </div>
-          <div className="rounded-[1.5rem] border border-black/10 bg-white/70 p-5 md:justify-self-end">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--muted)]">Leyenda</p>
-            <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--muted)]">
-              Elige una categoria a la izquierda. El catalogo muestra {visible.length} productos
-              {visible.length > 0 ? `, del ${firstVisibleIndex} al ${lastVisibleIndex}.` : "."}
-            </p>
-          </div>
+        <div className="mb-8">
+          <p className="section-kicker">Catalogo</p>
+          <h2 className="font-display text-5xl leading-none text-[var(--ink)] md:text-6xl">{title}</h2>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[280px_1fr]">

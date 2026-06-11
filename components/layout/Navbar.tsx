@@ -41,11 +41,21 @@ export function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-7 md:pt-5" data-scrolled={isScrolled}>
-      <nav className="site-nav mx-auto flex max-w-[92rem] items-start gap-5">
+    <header className={`site-header pointer-events-none fixed inset-x-0 top-0 z-50 ${
+      isScrolled ? "px-0 pt-0" : "px-4 pt-2 md:px-7 md:pt-3"
+    }`} data-scrolled={isScrolled}>
+      <nav className={`site-nav mx-auto flex w-full ${
+        isScrolled
+          ? "max-w-none items-center gap-5 rounded-none border-b border-white/20 bg-white/15 px-6 md:px-12 py-2 backdrop-blur-2xl shadow-sm pointer-events-auto"
+          : "max-w-[92rem] items-start gap-5"
+      }`}>
         <BrandLogo className="pointer-events-auto shrink-0" />
 
-        <div className="nav-desktop-center pointer-events-auto ml-auto items-center gap-6 rounded-full border border-white/18 bg-transparent px-5 py-2.5 text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur-[2px] xl:gap-7">
+        <div className={`nav-desktop-center pointer-events-auto ml-auto items-center gap-6 xl:gap-7 ${
+          isScrolled
+            ? "bg-transparent border-0 shadow-none px-0 py-0 backdrop-blur-none"
+            : "rounded-full border border-white/25 bg-white/15 px-5 py-2 backdrop-blur-2xl"
+        }`}>
           <Link className={navText} href="/">
             Inicio
           </Link>
@@ -74,7 +84,7 @@ export function Navbar() {
           <button
             aria-controls={accordionId}
             aria-expanded={isOpen}
-            className="nav-mobile-category h-10 items-center gap-2 rounded-full border border-white/30 bg-black/10 px-3 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_12px_32px_rgba(0,0,0,0.20)] backdrop-blur-md transition hover:border-[var(--gold)] hover:text-[var(--gold)]"
+            className="nav-mobile-category h-10 items-center gap-2 rounded-full border border-[#1a1a1a]/20 bg-white/50 px-3 text-xs font-bold uppercase tracking-[0.18em] text-[#1a1a1a] shadow-[0_4px_16px_rgba(0,0,0,0.10)] backdrop-blur-md transition hover:border-[var(--gold)] hover:text-[var(--gold)]"
             onClick={() => setIsOpen((value) => !value)}
             type="button"
           >

@@ -38,12 +38,26 @@ export function JewelryIntro() {
       timeline
         .fromTo(
           logoRef.current,
-          { opacity: 0, rotateY: -74, rotateX: 16, rotateZ: -4, scale: 0.62, z: -220 },
-          { opacity: 1, rotateY: 0, rotateX: 0, rotateZ: 0, scale: 1, z: 0, duration: 0.82 },
+          { opacity: 0, rotateX: -90, rotateY: 15, scale: 0.65, z: -150 },
+          { opacity: 1, rotateX: 12, rotateY: -10, scale: 1.05, z: 30, duration: 1.1, ease: "power4.out" }
         )
-        .to(logoRef.current, { rotateY: 360, scale: 1.04, duration: 0.95, ease: "power2.inOut" })
-        .to(logoRef.current, { rotateX: -7, rotateY: 10, scale: 0.98, duration: 0.32, ease: "power2.out" })
-        .to(overlayRef.current, { opacity: 0, duration: 0.58, ease: "power2.inOut" }, "+=0.12");
+        .to(logoRef.current, {
+          rotateX: -5,
+          rotateY: 180,
+          scale: 0.95,
+          z: 10,
+          duration: 0.9,
+          ease: "power2.inOut"
+        })
+        .to(logoRef.current, {
+          rotateX: 0,
+          rotateY: 360,
+          scale: 1.0,
+          z: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        })
+        .to(overlayRef.current, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, "+=0.15");
 
       cleanup = () => {
         window.clearTimeout(fallback);
@@ -60,26 +74,29 @@ export function JewelryIntro() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#110d0a]"
+      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#efe9df]"
       ref={overlayRef}
       role="presentation"
+      style={{
+        backgroundImage: "radial-gradient(circle at 50% 45%, #efe9df 0%, #e6dec8 60%, #ded6c3 100%)"
+      }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(201,168,76,0.22),transparent_28%),radial-gradient(circle_at_50%_55%,rgba(255,255,255,0.08),transparent_22%)]" />
-      <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,.24)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:88px_88px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(201,168,76,0.18),transparent_35%),radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.7),transparent_30%)]" />
+      <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(201,168,76,.35)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,.35)_1px,transparent_1px)] [background-size:88px_88px]" />
 
       <div className="relative grid place-items-center px-6 [perspective:1200px]">
         <div
           className="relative w-[min(72vw,28rem)] [transform-style:preserve-3d] will-change-transform"
           ref={logoRef}
         >
-          <div className="absolute inset-x-[14%] bottom-[12%] h-8 rounded-full bg-black/40 blur-2xl" />
+          <div className="absolute inset-x-[14%] bottom-[8%] h-6 rounded-full bg-black/10 blur-xl" />
           <Image
             alt="Logo JoyaPerú"
-            className="relative h-auto w-full object-contain drop-shadow-[0_36px_80px_rgba(0,0,0,0.58)]"
-            height={1782}
+            className="relative h-auto w-full object-contain drop-shadow-[0_28px_60px_rgba(140,118,76,0.22)] drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
+            height={941}
             priority
-            src="/logo/logo2sinbg.png"
-            width={2400}
+            src="/logo/logo4sinbg.png"
+            width={1672}
           />
         </div>
       </div>

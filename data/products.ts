@@ -44,6 +44,7 @@ export const products: Product[] = [
     price: "S/187.53",
     image: "/images/pulseras/set-pulseras-tejidas-corazon-plata-950-11992.webp",
     description: "Pulseras tejidas con corazon de plata 950 personalizable.",
+    featured: true,
   },
   {
     id: "jp-abrazo-eterno",
@@ -52,6 +53,7 @@ export const products: Product[] = [
     price: "S/246.13",
     image: "/images/collares/collar-hada-colgante-plata-950-11990.webp",
     description: "Una pieza emocional de plata 950 para regalar memoria.",
+    featured: true,
   },
   {
     id: "jp-perlas-rio",
@@ -75,7 +77,8 @@ export const products: Product[] = [
     category: "Anillos",
     price: "S/398.50",
     image: "/images/anillos/anillos-promesa-plata-950-11837.webp",
-    description: "Par de promesa con volumen sutil y acabado brillante.",
+    description: "Par de promesa con volumen sutil and acabado brillante.",
+    featured: true,
   },
   {
     id: "jp-van-cleef",
@@ -84,6 +87,7 @@ export const products: Product[] = [
     price: "S/312.00",
     image: "/images/pulseras/pulsera-van-cleef-plata-950-11276.webp",
     description: "Motivo trebol en plata 950 para uso diario elevado.",
+    featured: true,
   },
   {
     id: "jp-girasol",
